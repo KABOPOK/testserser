@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class UserService extends DefaultService{
+public class UserService {
 
   private final UserRepository userRepository;
   private final JdbcTemplate jdbcTemplate;

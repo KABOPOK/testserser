@@ -4,7 +4,7 @@ info:
   description: marketApi
   version: 1.0.0
 paths:
-  /api/users:
+  /api/users/create:
     post:
       tags:
         - User
@@ -23,12 +23,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IdDTO'
-  /api/users/getUser:
+  /api/users/authorization:
     post:
       tags:
         - User
       operationId: getUser
-      summary: get user for autotification
+      summary: get user for authorization
       requestBody:
         required: true
         content:
@@ -42,14 +42,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserDTO'
+  /api/products/create:
+    post:
+      tags:
+        - Product
+      operationId: createProduct
+      summary: Create a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDTO'
+      responses:
+        '200':
+          description: Product created successfully
 components:
   schemas:
     UserDTO:
       type: object
       properties:
-        userID:
-          type: string
-          format: uuid
         number:
           type: string
           maxLength: 15
@@ -89,3 +101,31 @@ components:
         password:
           type: string
           maxLength: 30
+    ProductDTO:
+      type: object
+      properties:
+        price:
+          type: string
+          description: Price of the product
+        title:
+          type: string
+          description: Title of the product
+        ownerName:
+          type: string
+          description: Name of the owner
+        photoUrl:
+          type: string
+          description: URL of the product photo
+        location:
+          type: string
+          description: Location of the product
+        description:
+          type: string
+          description: Description of the product
+        category:
+          type: string
+          description: Category of the product
+        userID:
+          type: string
+          format: uuid
+          description: Identifier of the user who owns the product

@@ -18,7 +18,7 @@ public class User {
 
   @Id
   @GeneratedValue
-  @Column(name = "userid", columnDefinition = "UUID")
+  @Column(name = "user_id", columnDefinition = "UUID")
   private UUID userID;
 
   @Column(name = "number", unique = true, nullable = false, length = 15)
@@ -36,6 +36,6 @@ public class User {
   @Column(name = "location", length = 30)
   private String location;
 
-  @Column(name = "telegramid", length = 30)
+  @Column(name = "telegram_id", length = 30)
   private String telegramID;
 }
