@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+  title: marketApi
+  description: marketApi
+  version: 1.0.0
+paths:
+  /api/users:
+    post:
+      tags:
+        - User
+      operationId: saveUser
+      summary: Create a new User
+      requestBody:
+        required: true
+        content:
+          application/json:  # Corrected content type
+            schema:
+              $ref: '#/components/schemas/UserDTO'
+      responses:
+        '200':
+          description: User ID created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdDTO'
+  /api/users/getUser:
+    post:
+      tags:
+        - User
+      operationId: getUser
+      summary: get user for autotification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDataDTO'
+      responses:
+        '200':
+          description: 'successful'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDTO'
+components:
+  schemas:
+    UserDTO:
+      type: object
+      properties:
+        userID:
+          type: string
+          format: uuid
+        number:
+          type: string
+          maxLength: 15
+        password:
+          type: string
+          maxLength: 30
+        userName:
+          type: string
+          maxLength: 30
+        photoUrl:
+          type: string
+          maxLength: 100
+        location:
+          type: string
+          maxLength: 30
+        telegramID:
+          type: string
+          maxLength: 30
+      required:
+        - number
+        - password
+    IdDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Identification
+      required:
+        - id
+    LoginDataDTO:
+      type: object
+      properties:
+        number:
+          type: string
+          maxLength: 15
+        password:
+          type: string
+          maxLength: 30
