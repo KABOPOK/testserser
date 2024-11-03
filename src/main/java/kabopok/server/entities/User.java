@@ -7,6 +7,8 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.nio.file.attribute.UserDefinedFileAttributeView;
 import java.util.UUID;
 
 @Entity

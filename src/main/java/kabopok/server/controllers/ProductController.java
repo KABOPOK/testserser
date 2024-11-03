@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,6 +25,16 @@ public class ProductController implements ProductApi {
   public void createProduct(ProductDTO productDTO) {
     Product product = productMapper.map(productDTO);
     productService.save(product);
+  }
+
+  @Override
+  public List<ProductDTO> getProducts(Integer page, Integer limit) {
+    List<Product> productList = productService.getProducts(page, limit);
+    List<ProductDTO> productDTOList = new ArrayList<>();
+    productList.forEach(product -> {
+      productDTOList.add(productMapper.map(product));
+    });
+    return productDTOList;
   }
 
 }
