@@ -15,7 +15,6 @@ paths:
         content:
           multipart/form-data:
             schema:
-              type: object
               properties:
                 user:
                   $ref: '#/components/schemas/UserDTO'
@@ -113,9 +112,6 @@ components:
         telegramID:
           type: string
           maxLength: 30
-      required:
-        - number
-        - password
     IdDTO:
       type: object
       properties:

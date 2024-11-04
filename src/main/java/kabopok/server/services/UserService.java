@@ -28,6 +28,7 @@ public class UserService {
   public UUID save(User user){
     UUID userID = UUID.randomUUID();
     user.setUserID(userID);
+    user.setPhotoUrl(userID.toString());
     userRepository.save(user);
     return userID;
   }

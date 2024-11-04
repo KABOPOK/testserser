@@ -19,7 +19,6 @@ import java.util.UUID;
 public class User {
 
   @Id
-  @GeneratedValue
   @Column(name = "user_id", columnDefinition = "UUID")
   private UUID userID;
 
@@ -29,10 +28,10 @@ public class User {
   @Column(name = "password", nullable = false, length = 30)
   private String password;
 
-  @Column(name = "username", nullable = false, length = 30)
+  @Column(name = "user_name", nullable = false, length = 30)
   private String userName;
 
-  @Column(name = "photourl", length = 100)
+  @Column(name = "photo_url", length = 100)
   private String photoUrl;
 
   @Column(name = "location", length = 30)
