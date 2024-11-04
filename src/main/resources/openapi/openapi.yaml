@@ -13,9 +13,15 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:  # Corrected content type
+          multipart/form-data:
             schema:
-              $ref: '#/components/schemas/UserDTO'
+              type: object
+              properties:
+                user:
+                  $ref: '#/components/schemas/UserDTO'
+                image:
+                  type: string
+                  format: binary
       responses:
         '200':
           description: User ID created
@@ -101,9 +107,6 @@ components:
         userName:
           type: string
           maxLength: 30
-        photoUrl:
-          type: string
-          maxLength: 100
         location:
           type: string
           maxLength: 30
