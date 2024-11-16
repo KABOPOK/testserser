@@ -1,10 +1,6 @@
 package kabopok.server.services;
 
-import generated.kabopok.server.api.ProductApi;
-import generated.kabopok.server.api.model.ProductDTO;
-import generated.kabopok.server.api.model.UserDTO;
 import kabopok.server.entities.Product;
-import kabopok.server.entities.User;
 import kabopok.server.repositories.ProductRepository;
 import kabopok.server.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +32,11 @@ public class ProductService extends DefaultService {
     getOrThrow(userId, userRepository::findById);
     Pageable pageable = PageRequest.of(page - 1, limit);
     return productRepository.findAllByUserID(userId, pageable);
+  }
+
+  public List<Product> getMyFavProducts(List<UUID> productsIdList, Integer page, Integer limit){
+    Pageable pageable = PageRequest.of(page - 1, limit);
+    return productRepository.findByProductIdList(productsIdList,pageable);
   }
 
   public Product deleteProduct(UUID productId) {
