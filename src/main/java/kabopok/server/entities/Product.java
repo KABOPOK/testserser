@@ -3,7 +3,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
+
 
 @Entity
 @Table(name = "products")
@@ -14,7 +18,7 @@ public class Product {
 
   @Id
   @Column(name = "product_id", columnDefinition = "UUID")
-  private UUID productID; // UUID for unique identification
+  private UUID productID;
 
   @Column(name = "price", nullable = false)
   private String price;
@@ -37,7 +41,11 @@ public class Product {
   @Column(name = "category")
   private String category;
 
-  @Column(name = "user_id")
-  private UUID userID;
-}
+  @ManyToOne
+  @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+  private User user;
 
+//  @ManyToMany(mappedBy = "productsWish")
+//  private Set<User> usersWishedBy = new HashSet<>();
+
+}
